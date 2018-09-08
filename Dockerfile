@@ -6,7 +6,6 @@ ENV HUBOT_SLACK_TOKEN nope-1234-5678-91011-00e4dd
 ENV HUBOT_NAME hubot-fred
 ENV HUBOT_OWNER none
 ENV HUBOT_DESCRIPTION Hubot
-ENV EXTERNAL_SCRIPTS "hubot-help,hubot-pugme"
 
 RUN adduser -S hubot
 
@@ -20,7 +19,5 @@ RUN yo hubot --owner="${HUBOT_OWNER}" --name="${HUBOT_NAME}" --description="${HU
 
 VOLUME ["/home/hubot/scripts"]
 
-#CMD node -e "console.log(JSON.stringify('$EXTERNAL_SCRIPTS'.split(',')))" > external-scripts.json && \
-#	npm install $(node -e "console.log('$EXTERNAL_SCRIPTS'.split(',').join(' '))") && \
 CMD npm install && \
 	bin/hubot -n $HUBOT_NAME --adapter slack
